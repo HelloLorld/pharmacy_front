@@ -24,6 +24,6 @@ export class PackagingService {
   }
 
   public change(packaging: Packaging): Observable<Packaging> {
-    return this.http.patch<Packaging>(this.url + '/' + packaging.id, packaging);
+    return this.http.put<Packaging>(this.url + '/' + packaging.id, packaging);
   }
 }

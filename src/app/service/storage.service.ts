@@ -23,6 +23,6 @@ export class StorageService {
   }
 
   public change(storage: StorageModel): Observable<StorageModel> {
-    return this.http.patch<StorageModel>(this.url + '/' + storage.id, storage);
+    return this.http.put<StorageModel>(this.url + '/' + storage.id, storage);
   }
 }

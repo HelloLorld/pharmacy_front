@@ -23,6 +23,6 @@ export class OrderService {
   }
 
   public change(order: Order): Observable<Order> {
-    return this.http.patch<Order>(this.url + '/' + order.id, order);
+    return this.http.put<Order>(this.url + '/' + order.id, order);
   }
 }

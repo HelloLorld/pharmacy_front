@@ -24,6 +24,6 @@ export class ClientService {
   }
 
   public change(client: Client): Observable<Client> {
-    return this.http.patch<Client>(this.url + '/' + client.id, client);
+    return this.http.put<Client>(this.url + '/' + client.id, client);
   }
 }

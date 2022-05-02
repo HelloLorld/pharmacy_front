@@ -24,6 +24,6 @@ export class MedicationService {
   }
 
   public change(medication: Medication): Observable<Medication> {
-    return this.http.patch<Medication>(this.url + '/' + medication.id, medication);
+    return this.http.put<Medication>(this.url + '/' + medication.id, medication);
   }
 }

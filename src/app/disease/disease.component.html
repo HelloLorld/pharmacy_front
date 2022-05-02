@@ -1,6 +1,44 @@
 <mat-grid-list cols="3" rowHeight="200px">
   <mat-grid-tile [rowspan]="diseases.length/2">
-    forma
+    <div id="containerForForm">
+      <div id="parent" [style]="stylePadding()">
+        <div id="child">
+          <div class="card-body">
+            <button [disabled]="!changeDisease" (click)="change()" class="btn btn-info">Добавить болезнь</button>
+            <button [disabled]="changeDisease" (click)="change()" class="btn btn-info">Изменить болезнь</button>
+            <form [formGroup]="disease" novalidate>
+              <div class="form-group" *ngIf="changeDisease">
+                <label for="change">Выберите болезнь</label> <br>
+                <select (change)="chooseDisease($event)" id="change" required>
+                  <option [value]="-1">Не выбрано</option>
+                  <option *ngFor="let item of diseases;let i = index" [value]="i">{{item.name}}</option>
+                </select>
+                <div *ngIf="disease.untouched" class="alert alert-danger">Укажите болезнь</div>
+              </div>
+              <div class="form-group">
+                <label for="name">Наименование болезни</label><br>
+                <input type="text" name="name" id="name" formControlName="name">
+                <div *ngIf="disease.controls['name'].invalid && disease.controls['name'].touched"
+                     class="alert alert-danger">Наименование болезни - обязательное
+                  поле
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="symptoms">Симптомы</label><br>
+                <textarea type="text" name="symptoms" id="symptoms" formControlName="symptoms"
+                          style="width: 400px; height: 200px"></textarea>
+                <div *ngIf="disease.controls['symptoms'].invalid && disease.controls['symptoms'].touched"
+                     class="alert alert-danger">Симптомы - обязательное
+                  поле
+                </div>
+              </div>
+              <button (click)="addDisease()" [disabled]="disease.invalid">Отправить</button>
+              <button (click)="deleteDisease()" *ngIf="changeDisease" [disabled]="disease.invalid">Удалить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </mat-grid-tile>
   <mat-grid-tile *ngFor="let disease of diseases">
     <mat-card>

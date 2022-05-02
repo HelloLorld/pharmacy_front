@@ -1,5 +1,8 @@
 <mat-grid-list cols="3" rowHeight="300px">
   <mat-grid-tile [rowspan]="sellers.length/2">
+    <div id="containerForForm">
+      <div id="parent" [style]="stylePadding()">
+        <div id="child">
     <div class="card-body">
       <button [disabled]="!changeSaler" (click)="change()" class="btn btn-info">Добавить продаца</button>
       <button [disabled]="changeSaler" (click)="change()" class="btn btn-info">Изменить продавца</button>
@@ -55,6 +58,9 @@
         <button (click)="addSaler()" [disabled]="saler.invalid">Отправить</button>
         <button (click)="deleteSaler()" *ngIf="changeSaler" [disabled]="saler.invalid">Удалить</button>
       </form>
+    </div>
+        </div>
+      </div>
     </div>
   </mat-grid-tile>
   <mat-grid-tile *ngFor="let saler of sellers; let i = index">

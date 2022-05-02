@@ -23,6 +23,6 @@ export class ManufacturerService {
   }
 
   public change(manufacturer: Manufacturer): Observable<Manufacturer> {
-    return this.http.patch<Manufacturer>(this.url + '/' + manufacturer.id, manufacturer);
+    return this.http.put<Manufacturer>(this.url + '/' + manufacturer.id, manufacturer);
   }
 }

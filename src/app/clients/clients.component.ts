@@ -25,6 +25,10 @@ export class ClientsComponent implements OnInit {
     });
   }
 
+  stylePadding(): string {
+    return !this.changeClient ? 'padding-top: 0px' : 'padding-top:100px';
+  }
+
   addClient(): void {
     const newClient = new Client();
     newClient.fullName = this.client.get('fullName').value;

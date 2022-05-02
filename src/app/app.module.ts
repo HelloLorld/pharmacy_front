@@ -30,6 +30,7 @@ import {PackagingComponent} from './packaging/packaging.component';
 import { PhonePipe } from './pipes/phone.pipe';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -45,19 +46,20 @@ import {ReactiveFormsModule} from '@angular/forms';
     MainComponent,
     PhonePipe
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        MatSliderModule,
-        MatToolbarModule,
-        AppRoutingModule,
-        MatMenuModule,
-        MatButtonModule,
-        MatCardModule,
-        MatGridListModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatSliderModule,
+    MatToolbarModule,
+    AppRoutingModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule,
+    ReactiveFormsModule,
+    MatCheckboxModule
+  ],
   providers: [
     ClientService,
     DiseaseService,

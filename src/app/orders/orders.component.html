@@ -1,11 +1,51 @@
-<mat-grid-list cols="3" rowHeight="3:1">
+<mat-grid-list cols="3" rowHeight="200px">
   <mat-grid-tile [rowspan]="orders.length/2">
-    <form [formGroup]="order">
-      <input type="text" name="id">
-    </form>
+    <div id="containerForForm">
+      <div id="parent" [style]="stylePadding()">
+        <div id="child">
+          <div class="card-body">
+            <button [disabled]="!changeOrder" (click)="change()" class="btn btn-info">Добавить заказ</button>
+            <button [disabled]="changeOrder" (click)="change()" class="btn btn-info">Изменить заказ</button>
+            <form [formGroup]="order" novalidate>
+              <div class="form-group" *ngIf="changeOrder">
+                <label for="change">Выберите клиента</label> <br>
+                <select (change)="chooseOrder($event)" id="change" required>
+                  <option [value]="-1">Не выбрано</option>
+                  <option *ngFor="let item of orders;let i = index" [value]="i">{{'Заказ №' + (i+1)}}</option>
+                </select>
+                <div *ngIf="order.untouched" class="alert alert-danger">Укажите заказ</div>
+              </div>
+              <div class="form-group">
+                <label for="saler">Выберите продавца</label> <br>
+                <select (change)="chooseSaler($event)" id="saler" required>
+                  <option [value]="-1">Не выбрано</option>
+                  <option *ngFor="let item of sellers;let i = index"
+                          [selected]="item.id === saler.controls['id'].value"
+                          [value]="i">{{item.fullName}}</option>
+                </select>
+                <div *ngIf="saler.untouched" class="alert alert-danger">Укажите место хранения</div>
+              </div>
+              <div class="form-group">
+                <label for="client">Выберите клиента</label> <br>
+                <select (change)="chooseClient($event)" id="client" required>
+                  <option [value]="-1">Не выбрано</option>
+                  <option *ngFor="let item of clients;let i = index"
+                          [selected]="item.id === client.controls['id'].value"
+                          [value]="i">{{item.fullName}}</option>
+                </select>
+                <div *ngIf="client.untouched" class="alert alert-danger">Укажите место хранения</div>
+              </div>
+              <button (click)="addOrder()" [disabled]="order.invalid || client.invalid || saler.invalid">Отправить
+              </button>
+              <button (click)="deleteOrder()" *ngIf="changeOrder" [disabled]="client.invalid">Удалить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </mat-grid-tile>
   <mat-grid-tile *ngFor="let order of orders">
-    <mat-card >
+    <mat-card>
       <mat-card-title>
         Заказ №{{order.id}}
       </mat-card-title>

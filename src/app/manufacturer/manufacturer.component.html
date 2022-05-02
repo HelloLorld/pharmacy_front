@@ -1,6 +1,37 @@
 <mat-grid-list cols="3" rowHeight="4:1">
   <mat-grid-tile [rowspan]="manufacturers.length/2">
-    forma
+    <div class="card-body">
+      <button [disabled]="!changeManufacturer" (click)="change()" class="btn btn-info">Добавить производителя</button>
+      <button [disabled]="changeManufacturer" (click)="change()" class="btn btn-info">Изменить производителя</button>
+      <form [formGroup]="manufacturer" novalidate>
+        <div class="form-group" *ngIf="changeManufacturer">
+          <label for="change">Выберите клиента</label> <br>
+          <select (change)="chooseManufacturer($event)" id="change" required>
+            <option [value]="-1">Не выбрано</option>
+            <option *ngFor="let item of manufacturers;let i = index" [value]="i">{{item.name}}</option>
+          </select>
+          <div *ngIf="manufacturer.untouched" class="alert alert-danger">Укажите производителя</div>
+        </div>
+        <div class="form-group">
+          <label for="name">Наименование производителя</label><br>
+          <input type="text" name="fullName" id="name" formControlName="name">
+          <div *ngIf="manufacturer.controls['name'].invalid && manufacturer.controls['name'].touched"
+               class="alert alert-danger">Наименование производителя - обязательное
+            поле
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="city">Город</label><br>
+          <input type="text" name="city" id="city" formControlName="city">
+          <div *ngIf="manufacturer.controls['city'].invalid && manufacturer.controls['city'].touched"
+               class="alert alert-danger">Город - обязательное
+            поле
+          </div>
+        </div>
+        <button (click)="addManufacturer()" [disabled]="manufacturer.invalid">Отправить</button>
+        <button (click)="deleteManufacturer()" *ngIf="changeManufacturer" [disabled]="manufacturer.invalid">Удалить</button>
+      </form>
+    </div>
   </mat-grid-tile>
   <mat-grid-tile *ngFor="let manufacturer of manufacturers">
     <mat-card>

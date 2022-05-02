@@ -23,6 +23,6 @@ export class DiseaseService {
   }
 
   public change(disease: Disease): Observable<Disease> {
-    return this.http.patch<Disease>(this.url + '/' + disease.id, disease);
+    return this.http.put<Disease>(this.url + '/' + disease.id, disease);
   }
 }

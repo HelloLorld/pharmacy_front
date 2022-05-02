@@ -1,5 +1,30 @@
 <mat-grid-list cols="3" rowHeight="4:1">
-  <mat-grid-tile [rowspan]="packagings.length/2"></mat-grid-tile>
+  <mat-grid-tile [rowspan]="packagings.length/2">
+    <div class="card-body">
+      <button [disabled]="!changePackaging" (click)="change()" class="btn btn-info">Добавить упаковку</button>
+      <button [disabled]="changePackaging" (click)="change()" class="btn btn-info">Изменить упаковку</button>
+      <form [formGroup]="packaging" novalidate>
+        <div class="form-group" *ngIf="changePackaging">
+          <label for="change">Выберите болезнь</label> <br>
+          <select (change)="choosePackaging($event)" id="change" required>
+            <option [value]="-1">Не выбрано</option>
+            <option *ngFor="let item of packagings;let i = index" [value]="i">{{item.name}}</option>
+          </select>
+          <div *ngIf="packaging.untouched" class="alert alert-danger">Укажите упаковку</div>
+        </div>
+        <div class="form-group">
+          <label for="name">Наименование упаковки</label><br>
+          <input type="text" name="name" id="name" formControlName="name">
+          <div *ngIf="packaging.controls['name'].invalid && packaging.controls['name'].touched"
+               class="alert alert-danger">Наименование упаковки - обязательное
+            поле
+          </div>
+        </div>
+        <button (click)="addPackaging()" [disabled]="packaging.invalid">Отправить</button>
+        <button (click)="deletePackaging()" *ngIf="changePackaging" [disabled]="packaging.invalid">Удалить</button>
+      </form>
+    </div>
+  </mat-grid-tile>
   <mat-grid-tile *ngFor="let packaging of packagings">
     <mat-card>
       <mat-card-title>

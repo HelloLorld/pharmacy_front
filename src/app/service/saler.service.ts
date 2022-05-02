@@ -24,6 +24,6 @@ export class SalerService {
   }
 
   public change(saler: Saler): Observable<Saler> {
-    return this.http.patch<Saler>(this.url + '/' + saler.id, saler);
+    return this.http.put<Saler>(this.url + '/' + saler.id, saler);
   }
 }

@@ -27,6 +27,11 @@ export class SellersComponent implements OnInit {
       birthday: new FormControl('', Validators.required)
     });
   }
+
+  stylePadding(): string {
+    return !this.changeSaler ? 'padding-top: 0px' : 'padding-top: 100px';
+  }
+
   addSaler(): void {
     const saler = new Saler();
     saler.fullName = this.saler.get('fullName').value;

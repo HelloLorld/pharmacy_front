@@ -1,6 +1,94 @@
 <mat-grid-list cols="3" rowHeight="2:1">
   <mat-grid-tile [rowspan]="medications.length/2">
-    fomra
+    <div id="containerForForm">
+      <div id="parent" [style]="stylePadding()">
+        <div id="child">
+          <div class="card-body">
+            <button [disabled]="!changeMedication" (click)="change()" class="btn btn-info">Добавить препарат</button>
+            <button [disabled]="changeMedication" (click)="change()" class="btn btn-info">Изменить препарат</button>
+            <form [formGroup]="medication" novalidate>
+              <div class="form-group" *ngIf="changeMedication">
+                <label for="change">Выберите болезнь</label> <br>
+                <select (change)="chooseMedication($event)" id="change" required>
+                  <option [value]="-1">Не выбрано</option>
+                  <option *ngFor="let item of medications;let i = index" [value]="i">{{item.name}}</option>
+                </select>
+                <div *ngIf="medication.untouched" class="alert alert-danger">Укажите препарат</div>
+              </div>
+              <div class="form-group">
+                <label for="name">Наименование препарата</label><br>
+                <input type="text" name="name" id="name" formControlName="name">
+                <div *ngIf="medication.controls['name'].invalid && medication.controls['name'].touched"
+                     class="alert alert-danger">Наименование препарата - обязательное
+                  поле
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="salePrice">Цена закупки</label><br>
+                <input type="number" name="salePrice" id="salePrice" formControlName="salePrice">
+                <div *ngIf="medication.controls['salePrice'].invalid && medication.controls['salePrice'].touched"
+                     class="alert alert-danger">Наименование препарата - обязательное
+                  поле
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="purchasePrice">Рекомендуемая цена продажи</label><br>
+                <input type="number" name="purchasePrice" id="purchasePrice" formControlName="purchasePrice">
+                <div
+                  *ngIf="medication.controls['purchasePrice'].invalid && medication.controls['purchasePrice'].touched"
+                  class="alert alert-danger">Рекомендуемая цена продажи - обязательное
+                  поле
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="changePackaging">Выберите упаковку</label> <br>
+                <select (change)="choosePackaging($event)" id="changePackaging" required>
+                  <option [value]="-1">Не выбрано</option>
+                  <option *ngFor="let item of packagings;let i = index" [value]="i"
+                          [selected]="item.id === packaging.controls['id'].value">{{item.name}}</option>
+                </select>
+                <div *ngIf="medication.untouched" class="alert alert-danger">Укажите упаковку</div>
+              </div>
+              <div class="form-group">
+                <label for="changeManufacturer">Выберите производителя</label> <br>
+                <select (change)="chooseManufacturer($event)" id="changeManufacturer" required>
+                  <option [value]="-1">Не выбрано</option>
+                  <option *ngFor="let item of manufacturers;let i = index" [value]="i"
+                          [selected]="item.id === manufacturer.controls['id'].value">{{item.name}}</option>
+                </select>
+                <div *ngIf="medication.untouched" class="alert alert-danger">Укажите производителя</div>
+              </div>
+              <div class="form-group">
+                <label for="changeLocation">Выберите место хранения</label> <br>
+                <select (change)="chooseStorage($event)" id="changeLocation" required>
+                  <option [value]="-1">Не выбрано</option>
+                  <option *ngFor="let item of storages;let i = index"
+                          [selected]="item.id === storageLoc.controls['id'].value"
+                          [value]="i">{{item.name}}</option>
+                </select>
+                <div *ngIf="medication.untouched" class="alert alert-danger">Укажите место хранения</div>
+              </div>
+              <div class="form-group">
+                <fieldset>
+                  <div *ngFor="let disease of diseases;let i = index">
+                    <input type="checkbox" id="{{disease.name}}" name="{{disease.name}}" [value]="i"
+                           [checked]="checkDisease(i)"
+                           (change)="chooseDisease($event)">
+                    <label for="{{disease.name}}">{{disease.name}}</label>
+                  </div>
+                </fieldset>
+              </div>
+              <button (click)="addMedication()"
+                      [disabled]="medication.invalid || packaging.invalid || manufacturer.invalid || storageLoc.invalid">
+                Отправить
+              </button>
+              <button (click)="deleteMedication()" *ngIf="changeMedication" [disabled]="medication.invalid">Удалить
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </mat-grid-tile>
   <mat-grid-tile *ngFor="let medication of medications">
     <mat-card>
@@ -11,9 +99,11 @@
         Наименование: {{medication.name}} <br>
         Поставщик: {{medication.manufacturer.name}} <br>
         Упаковка: {{medication.packaging.name}} <br>
+        Место хранения: {{medication.storageLoc.name}} <br>
         Цена покупки на складе: {{medication.purchasePrice}} <br>
         Рекомендуемая цена продажи: {{medication.salePrice}} <br>
-        Болезни: <p *ngFor="let disease of medication.diseases"> {{disease.name}}</p>
+        Болезни: <span *ngFor="let disease of medication.diseases; let i = index"> {{disease.name}}<span
+        *ngIf="i !== medication.diseases.length-1">; </span></span>
       </mat-card-content>
       <!--  <mat-card-actions *ngIf="user!=null">-->
       <!--    <button mat-icon-button [color]="this.clicked.has(i) ? 'warn' : 'primary'" (click)="addTour(i)">-->
