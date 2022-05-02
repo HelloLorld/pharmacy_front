@@ -1,0 +1,21 @@
+<mat-grid-list cols="3" rowHeight="4:1">
+  <mat-grid-tile [rowspan]="manufacturers.length/2">
+    forma
+  </mat-grid-tile>
+  <mat-grid-tile *ngFor="let manufacturer of manufacturers">
+    <mat-card>
+      <mat-card-title>
+        Поставщик №{{manufacturer.id}}
+      </mat-card-title>
+      <mat-card-content>
+        Наименование: {{manufacturer.name}} <br>
+        Город: {{manufacturer.city}} <br>
+      </mat-card-content>
+      <!--  <mat-card-actions *ngIf="user!=null">-->
+      <!--    <button mat-icon-button [color]="this.clicked.has(i) ? 'warn' : 'primary'" (click)="addTour(i)">-->
+      <!--      <mat-icon>favorite</mat-icon>-->
+      <!--    </button>-->
+      <!--  </mat-card-actions>-->
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

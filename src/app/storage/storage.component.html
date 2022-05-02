@@ -1,0 +1,13 @@
+<mat-card *ngFor="let storage of storages">
+  <mat-card-title>
+    Место хранения №{{storage.id}}
+  </mat-card-title>
+  <mat-card-content>
+    Наименование: {{storage.name}} <br>
+  </mat-card-content>
+  <!--  <mat-card-actions *ngIf="user!=null">-->
+  <!--    <button mat-icon-button [color]="this.clicked.has(i) ? 'warn' : 'primary'" (click)="addTour(i)">-->
+  <!--      <mat-icon>favorite</mat-icon>-->
+  <!--    </button>-->
+  <!--  </mat-card-actions>-->
+</mat-card>

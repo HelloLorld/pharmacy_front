@@ -1,0 +1,27 @@
+<mat-grid-list cols="3" rowHeight="3:1">
+  <mat-grid-tile [rowspan]="orders.length/2">
+    <form [formGroup]="order">
+      <input type="text" name="id">
+    </form>
+  </mat-grid-tile>
+  <mat-grid-tile *ngFor="let order of orders">
+    <mat-card >
+      <mat-card-title>
+        Заказ №{{order.id}}
+      </mat-card-title>
+      <mat-card-content>
+        Клиент: {{order.client.fullName}} <br>
+        Продавец: {{order.saler.fullName}} <br>
+        Заказано: <span
+        *ngFor="let ordered of order.ordered"> {{ordered.medication.name + ' ' + ordered.count + 'шт; '}}</span>
+        <br>
+        <ng-container *ngIf="order.ordered[0]">Стоимость: {{order.ordered[0].price + ' руб.'}}</ng-container>
+      </mat-card-content>
+      <!--  <mat-card-actions *ngIf="user!=null">-->
+      <!--    <button mat-icon-button [color]="this.clicked.has(i) ? 'warn' : 'primary'" (click)="addTour(i)">-->
+      <!--      <mat-icon>favorite</mat-icon>-->
+      <!--    </button>-->
+      <!--  </mat-card-actions>-->
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

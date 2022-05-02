@@ -1,0 +1,79 @@
+<mat-grid-list cols="3" rowHeight="300px">
+  <mat-grid-tile [rowspan]="sellers.length/2">
+    <div class="card-body">
+      <button [disabled]="!changeSaler" (click)="change()" class="btn btn-info">Добавить продаца</button>
+      <button [disabled]="changeSaler" (click)="change()" class="btn btn-info">Изменить продавца</button>
+      <form [formGroup]="saler" novalidate>
+        <div class="form-group" *ngIf="changeSaler">
+          <label for="change">Выберите продавца</label> <br>
+          <select (change)="chooseSaler($event)" id="change" required>
+            <option [value]="-1">Не выбрано</option>
+            <option *ngFor="let item of sellers;let i = index" [value]="i">{{item.fullName}}</option>
+          </select>
+          <div *ngIf="saler.untouched" class="alert alert-danger">Укажите продавца</div>
+        </div>
+        <div class="form-group">
+          <label for="fullName">ФИО</label><br>
+          <input type="text" name="fullName" id="fullName" formControlName="fullName">
+          <div *ngIf="saler.controls['fullName'].invalid && saler.controls['fullName'].touched"
+               class="alert alert-danger">ФИО - обязательное
+            поле
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="salary">Заработная плата</label><br>
+          <input type="number" name="salary" id="salary" formControlName="salary">
+          <div *ngIf="saler.controls['salary'].invalid && saler.controls['salary'].touched"
+               class="alert alert-danger">Заработная плата - обязательное
+            поле
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="post">Должность</label><br>
+          <input type="text" name="post" id="post" formControlName="post">
+          <div *ngIf="saler.controls['post'].invalid && saler.controls['post'].touched"
+               class="alert alert-danger">Должность - обязательное
+            поле
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="birthday">Дата рождения</label><br>
+          <input type="date" name="birthday" id="birthday" formControlName="birthday">
+          <div *ngIf="saler.controls['birthday'].invalid && saler.controls['birthday'].touched"
+               class="alert alert-danger">Дата рождения - обязательное
+            поле
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="startedWork">Дата начала работы</label><br>
+          <input type="date" name="startedWork" id="startedWork" formControlName="startedWork">
+          <div *ngIf="saler.controls['startedWork'].invalid && saler.controls['startedWork'].touched"
+               class="alert alert-danger">Дата рождения - обязательное
+            поле
+          </div>
+        </div>
+        <button (click)="addSaler()" [disabled]="saler.invalid">Отправить</button>
+        <button (click)="deleteSaler()" *ngIf="changeSaler" [disabled]="saler.invalid">Удалить</button>
+      </form>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile *ngFor="let saler of sellers; let i = index">
+    <mat-card>
+      <mat-card-title>
+        Продавец №{{i+1}}
+      </mat-card-title>
+      <mat-card-content>
+        ФИО: {{saler.fullName}} <br>
+        Должность: {{saler.post}} <br>
+        Заработная плата: <p> {{saler.salary + ' руб.'}}</p>
+        День рождения: <p> {{saler.birthday | date: 'dd.MM.yyyy'}}</p>
+        Начало работы: <p> {{saler.startedWork | date: 'dd.MM.yyyy'}}</p>
+      </mat-card-content>
+      <!--  <mat-card-actions *ngIf="user!=null">-->
+      <!--    <button mat-icon-button [color]="this.clicked.has(i) ? 'warn' : 'primary'" (click)="addTour(i)">-->
+      <!--      <mat-icon>favorite</mat-icon>-->
+      <!--    </button>-->
+      <!--  </mat-card-actions>-->
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,22 @@
+<p>
+  <mat-toolbar>
+    <span>Информационная система для аптеки</span>
+    <span class="spacer"></span>
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Меню</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item><a routerLink="/clients" class="btn btn-info menu-button">Клиенты</a></button>
+      <button mat-menu-item><a routerLink="/manufacturers" class="btn btn-info menu-button">Производители</a></button>
+      <button mat-menu-item><a routerLink="/sellers" class="btn btn-info menu-button">Продавцы</a></button>
+      <button mat-menu-item><a routerLink="/diseases" class="btn btn-info menu-button">Болезни</a></button>
+      <button mat-menu-item><a routerLink="/medications" class="btn btn-info menu-button">Препараты</a></button>
+      <button mat-menu-item><a routerLink="/packagings" class="btn btn-info menu-button">Упаковки</a></button>
+      <button mat-menu-item><a routerLink="/orders" class="btn btn-info menu-button">Заказы</a></button>
+      <button mat-menu-item><a routerLink="/storages" class="btn btn-info menu-button">Места хранения препаратов</a></button>
+    </mat-menu>
+  </mat-toolbar>
+</p>
+<div id="menuHolder">
+</div>
+<div id="holderContent">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,21 @@
+<mat-grid-list cols="3" rowHeight="200px">
+  <mat-grid-tile [rowspan]="diseases.length/2">
+    forma
+  </mat-grid-tile>
+  <mat-grid-tile *ngFor="let disease of diseases">
+    <mat-card>
+      <mat-card-title>
+        Болезнь №{{disease.id}}
+      </mat-card-title>
+      <mat-card-content>
+        Болезнь: {{disease.name}} <br>
+        Симптомы: {{disease.symptoms}} <br>
+      </mat-card-content>
+      <!--  <mat-card-actions *ngIf="user!=null">-->
+      <!--    <button mat-icon-button [color]="this.clicked.has(i) ? 'warn' : 'primary'" (click)="addTour(i)">-->
+      <!--      <mat-icon>favorite</mat-icon>-->
+      <!--    </button>-->
+      <!--  </mat-card-actions>-->
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,15 @@
+#menuHolder {
+  margin-left: auto;
+}
+
+.btn {
+  width: 240px;
+}
+
+#holderContent {
+  margin-top: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

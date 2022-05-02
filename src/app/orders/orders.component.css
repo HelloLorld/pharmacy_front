@@ -1,0 +1,14 @@
+mat-card {
+  width: 400px;
+}
+
+#parent {
+  position: relative;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+#child {
+  position: absolute;
+  bottom:0;
+}

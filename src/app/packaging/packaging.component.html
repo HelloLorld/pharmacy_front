@@ -1,0 +1,18 @@
+<mat-grid-list cols="3" rowHeight="4:1">
+  <mat-grid-tile [rowspan]="packagings.length/2"></mat-grid-tile>
+  <mat-grid-tile *ngFor="let packaging of packagings">
+    <mat-card>
+      <mat-card-title>
+        Упаковка №{{packaging.id}}
+      </mat-card-title>
+      <mat-card-content>
+        Название: {{packaging.name}} <br>
+      </mat-card-content>
+      <!--  <mat-card-actions *ngIf="user!=null">-->
+      <!--    <button mat-icon-button [color]="this.clicked.has(i) ? 'warn' : 'primary'" (click)="addTour(i)">-->
+      <!--      <mat-icon>favorite</mat-icon>-->
+      <!--    </button>-->
+      <!--  </mat-card-actions>-->
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
