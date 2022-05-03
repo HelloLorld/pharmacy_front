@@ -12,6 +12,7 @@ export class PackagingComponent implements OnInit {
   packagings: Packaging[];
   packaging: FormGroup;
   changePackaging = false;
+  find = '';
   constructor(private packagingService: PackagingService, private fb: FormBuilder) { }
 
   ngOnInit(): void {

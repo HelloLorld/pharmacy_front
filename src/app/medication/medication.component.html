@@ -1,5 +1,5 @@
 <mat-grid-list cols="3" rowHeight="2:1">
-  <mat-grid-tile [rowspan]="medications.length/2">
+  <mat-grid-tile [rowspan]="medications.length/2+1">
     <div id="containerForForm">
       <div id="parent" [style]="stylePadding()">
         <div id="child">
@@ -90,10 +90,15 @@
       </div>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile *ngFor="let medication of medications">
+  <mat-grid-tile colspan="2">
+    <button (click)="sortByPrice()">Сортировка по цене</button>
+    <button (click)="sortByABC()">Сортировка по алфавиту</button>
+    <button (click)="nonSort()">Убрать сортировку</button>
+  </mat-grid-tile>
+  <mat-grid-tile *ngFor="let medication of medications; let i = index">
     <mat-card>
       <mat-card-title>
-        Препарат №{{medication.id}}
+        Препарат №{{i+1}}
       </mat-card-title>
       <mat-card-content>
         Наименование: {{medication.name}} <br>

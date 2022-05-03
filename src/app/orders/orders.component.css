@@ -1,8 +1,8 @@
 mat-card {
   width: 400px;
+  height: 180px;
 }
 
 #containerForForm {
-  top:300px;
-  height: 500px;
+  top:700px;
 }

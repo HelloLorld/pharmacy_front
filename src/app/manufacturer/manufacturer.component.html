@@ -1,5 +1,5 @@
 <mat-grid-list cols="3" rowHeight="4:1">
-  <mat-grid-tile [rowspan]="manufacturers.length/2">
+  <mat-grid-tile [rowspan]="manufacturers.length/2 + 1">
     <div class="card-body">
       <button [disabled]="!changeManufacturer" (click)="change()" class="btn btn-info">Добавить производителя</button>
       <button [disabled]="changeManufacturer" (click)="change()" class="btn btn-info">Изменить производителя</button>
@@ -33,7 +33,13 @@
       </form>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile *ngFor="let manufacturer of manufacturers">
+  <mat-grid-tile colspan="2">
+    <div>
+      <label for="search">Поиск</label>
+      <input type="text" [(ngModel)]="find" id="search">
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile *ngFor="let manufacturer of manufacturers | search: find">
     <mat-card>
       <mat-card-title>
         Поставщик №{{manufacturer.id}}

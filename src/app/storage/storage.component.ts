@@ -12,6 +12,7 @@ export class StorageComponent implements OnInit {
   storages: StorageModel[];
   storageMed: FormGroup;
   changeStorage = false;
+  find = '';
   constructor(private storageService: StorageService, private fb: FormBuilder) { }
 
   ngOnInit(): void {

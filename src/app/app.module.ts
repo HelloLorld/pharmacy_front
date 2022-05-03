@@ -29,8 +29,9 @@ import {MatCardModule} from '@angular/material/card';
 import {PackagingComponent} from './packaging/packaging.component';
 import { PhonePipe } from './pipes/phone.pipe';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -44,22 +45,24 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     StorageComponent,
     PackagingComponent,
     MainComponent,
-    PhonePipe
+    PhonePipe,
+    SearchPipe
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatSliderModule,
-    MatToolbarModule,
-    AppRoutingModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatCardModule,
-    MatGridListModule,
-    ReactiveFormsModule,
-    MatCheckboxModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatSliderModule,
+        MatToolbarModule,
+        AppRoutingModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatCardModule,
+        MatGridListModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        FormsModule
+    ],
   providers: [
     ClientService,
     DiseaseService,

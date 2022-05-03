@@ -12,6 +12,7 @@ export class DiseaseComponent implements OnInit {
   diseases: Disease[];
   disease: FormGroup;
   changeDisease = false;
+  find = '';
   constructor(private diseaseService: DiseaseService, private fb: FormBuilder) { }
 
   ngOnInit(): void {

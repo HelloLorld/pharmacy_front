@@ -12,6 +12,7 @@ export class ManufacturerComponent implements OnInit {
   manufacturers: Manufacturer[] = [];
   manufacturer: FormGroup;
   changeManufacturer = false;
+  find = '';
   constructor(private manufacturerService: ManufacturerService, private fb: FormBuilder) { }
 
   ngOnInit(): void {

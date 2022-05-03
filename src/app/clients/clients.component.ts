@@ -12,6 +12,7 @@ export class ClientsComponent implements OnInit {
   clients: Client[] = [];
   client: FormGroup;
   changeClient = false;
+  find = '';
   constructor(private clientService: ClientService, private fb: FormBuilder) { }
 
   ngOnInit(): void {

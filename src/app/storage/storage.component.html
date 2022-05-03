@@ -1,5 +1,5 @@
 <mat-grid-list cols="3" rowHeight="4:1">
-  <mat-grid-tile [rowspan]="storages.length/2">
+  <mat-grid-tile [rowspan]="storages.length/2 + 1">
     <div class="card-body">
       <button [disabled]="!changeStorage" (click)="change()" class="btn btn-info">Добавить место хранения</button>
       <button [disabled]="changeStorage" (click)="change()" class="btn btn-info">Изменить место хранения</button>
@@ -25,7 +25,13 @@
       </form>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile *ngFor="let storage of storages">
+  <mat-grid-tile colspan="2">
+    <div>
+      <label for="search">Поиск</label>
+      <input type="text" [(ngModel)]="find" id="search">
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile *ngFor="let storage of storages | search: find">
     <mat-card>
       <mat-card-title>
         Место хранения №{{storage.id}}

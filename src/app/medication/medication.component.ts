@@ -28,6 +28,7 @@ export class MedicationComponent implements OnInit {
   manufacturer: FormGroup;
   diseasesSet: Set<Disease>;
   changeMedication = false;
+  find = '';
   constructor(private medicationService: MedicationService,
               private manufacturerService: ManufacturerService,
               private packagingService: PackagingService,
@@ -108,12 +109,37 @@ export class MedicationComponent implements OnInit {
     }
   }
 
+  sortByPrice(): void {
+    this.medications.sort((a, b) => {
+      if (a.salePrice > b.salePrice) { return 1; }
+      if (a.salePrice < b.salePrice) { return -1; }
+      return 0;
+    });
+  }
+
+  sortByABC(): void {
+    this.medications.sort((a, b) => {
+      if (a.name > b.name) { return 1; }
+      if (a.name < b.name) { return -1; }
+      return 0;
+    });
+  }
+
+  nonSort(): void{
+    this.medications.sort((a, b) => {
+    if (a.id > b.id) { return 1; }
+    if (a.id < b.id) { return -1; }
+    return 0;
+  });
+  }
+
   change(): void {
     this.changeMedication = !this.changeMedication;
     this.medication.reset();
     this.storageLoc.reset();
     this.packaging.reset();
     this.manufacturer.reset();
+    this.diseasesSet.clear();
   }
 
   chooseMedication(e: any): void {

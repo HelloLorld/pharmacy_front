@@ -1,5 +1,5 @@
 <mat-grid-list cols="3" rowHeight="4:1">
-  <mat-grid-tile [rowspan]="clients.length/2">
+  <mat-grid-tile [rowspan]="clients.length/2 + 1">
     <div id="containerForForm">
       <div id="parent" [style]="stylePadding()">
         <div id="child">
@@ -39,7 +39,13 @@
       </div>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile *ngFor="let client of clients; let i = index">
+  <mat-grid-tile colspan="2">
+    <div>
+      <label for="search">Поиск</label>
+      <input type="text" [(ngModel)]="find" id="search">
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile *ngFor="let client of clients | search: find; let i = index">
     <mat-card>
       <mat-card-title>
         Клиент №{{i + 1}}

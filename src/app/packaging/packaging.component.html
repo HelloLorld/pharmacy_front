@@ -1,5 +1,5 @@
 <mat-grid-list cols="3" rowHeight="4:1">
-  <mat-grid-tile [rowspan]="packagings.length/2">
+  <mat-grid-tile [rowspan]="packagings.length/2 + 1">
     <div class="card-body">
       <button [disabled]="!changePackaging" (click)="change()" class="btn btn-info">Добавить упаковку</button>
       <button [disabled]="changePackaging" (click)="change()" class="btn btn-info">Изменить упаковку</button>
@@ -25,7 +25,13 @@
       </form>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile *ngFor="let packaging of packagings">
+  <mat-grid-tile colspan="2">
+    <div>
+      <label for="search">Поиск</label>
+      <input type="text" [(ngModel)]="find" id="search">
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile *ngFor="let packaging of packagings | search: find">
     <mat-card>
       <mat-card-title>
         Упаковка №{{packaging.id}}

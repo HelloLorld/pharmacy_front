@@ -12,6 +12,7 @@ export class SellersComponent implements OnInit {
   sellers: Saler[] = [];
   saler: FormGroup;
   changeSaler = false;
+  find = '';
   constructor(private salerService: SalerService, private fb: FormBuilder) { }
 
   ngOnInit(): void {

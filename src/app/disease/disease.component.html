@@ -1,5 +1,5 @@
 <mat-grid-list cols="3" rowHeight="200px">
-  <mat-grid-tile [rowspan]="diseases.length/2">
+  <mat-grid-tile [rowspan]="diseases.length/2+1">
     <div id="containerForForm">
       <div id="parent" [style]="stylePadding()">
         <div id="child">
@@ -40,7 +40,13 @@
       </div>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile *ngFor="let disease of diseases">
+  <mat-grid-tile colspan="2">
+    <div>
+      <label for="search">Поиск</label>
+      <input type="text" [(ngModel)]="find" id="search">
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile *ngFor="let disease of diseases | search: find">
     <mat-card>
       <mat-card-title>
         Болезнь №{{disease.id}}
