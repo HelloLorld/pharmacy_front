@@ -47,7 +47,7 @@
                   <option *ngFor="let item of packagings;let i = index" [value]="i"
                           [selected]="item.id === packaging.controls['id'].value">{{item.name}}</option>
                 </select>
-                <div *ngIf="medication.untouched" class="alert alert-danger">Укажите упаковку</div>
+                <div *ngIf="packaging.invalid" class="alert alert-danger">Укажите упаковку</div>
               </div>
               <div class="form-group">
                 <label for="changeManufacturer">Выберите производителя</label> <br>
@@ -56,7 +56,7 @@
                   <option *ngFor="let item of manufacturers;let i = index" [value]="i"
                           [selected]="item.id === manufacturer.controls['id'].value">{{item.name}}</option>
                 </select>
-                <div *ngIf="medication.untouched" class="alert alert-danger">Укажите производителя</div>
+                <div *ngIf="manufacturer.invalid" class="alert alert-danger">Укажите производителя</div>
               </div>
               <div class="form-group">
                 <label for="changeLocation">Выберите место хранения</label> <br>
@@ -66,7 +66,7 @@
                           [selected]="item.id === storageLoc.controls['id'].value"
                           [value]="i">{{item.name}}</option>
                 </select>
-                <div *ngIf="medication.untouched" class="alert alert-danger">Укажите место хранения</div>
+                <div *ngIf="storageLoc.invalid" class="alert alert-danger">Укажите место хранения</div>
               </div>
               <div class="form-group">
                 <fieldset>

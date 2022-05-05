@@ -4,7 +4,7 @@
       <div id="parent" [style]="stylePadding()">
         <div id="child">
     <div class="card-body">
-      <button [disabled]="!changeSaler" (click)="change()" class="btn btn-info">Добавить продаца</button>
+      <button [disabled]="!changeSaler" (click)="change()" class="btn btn-info">Добавить продавца</button>
       <button [disabled]="changeSaler" (click)="change()" class="btn btn-info">Изменить продавца</button>
       <form [formGroup]="saler" novalidate>
         <div class="form-group" *ngIf="changeSaler">
